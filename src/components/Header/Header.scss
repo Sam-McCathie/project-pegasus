@@ -1,0 +1,45 @@
+@import "../../styles/_colors.scss";
+
+.header {
+  height: 70px;
+  background-color: var(--darkgrey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__content {
+    display: flex;
+    width: 499px;
+    justify-content: space-between;
+  }
+  &__logo {
+    width: 100px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--lightgrey);
+  }
+  &__buttons {
+    display: flex;
+    & > div:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+  &__button {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    background-color: var(--lightgrey);
+    border: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      border: 3px solid red; // temp
+      transition: 0.5s;
+    }
+  }
+}
