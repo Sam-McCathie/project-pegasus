@@ -2,8 +2,8 @@ import React from "react";
 import "./Header.scss";
 import Home from "../../svgs/Home.svg";
 import Notifications from "../../svgs/Notifications.svg";
-import Profile from "../../svgs/Profile.svg";
 import XP from "../../svgs/XP.svg";
+import Profile from "../../svgs/Profile.svg";
 
 export const Header = () => {
   return (
@@ -18,10 +18,10 @@ export const Header = () => {
             <img src={Notifications} alt=""></img>
           </div>
           <div className="header__button">
-            <img src={Profile} alt=""></img>
+            <img src={XP} alt=""></img>
           </div>
           <div className="header__button">
-            <img src={XP} alt=""></img>
+            <img src={Profile} alt=""></img>
           </div>
         </div>
       </div>
