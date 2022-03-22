@@ -1,0 +1,30 @@
+.calendar {
+  &__month {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+    margin: 20px 0;
+  }
+  &__DOW {
+    display: flex;
+    justify-content: center;
+    & > div:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+  &__day {
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+  }
+  &__layout {
+    display: flex;
+    justify-content: center;
+  }
+  &__nodes {
+    & > div:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+}

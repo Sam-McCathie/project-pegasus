@@ -1,0 +1,49 @@
+.calendar__node {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  &__day {
+    font-size: 36px;
+    font-weight: bold;
+    width: 50px;
+    height: 40px;
+    margin: 9px 9px 0 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & > div:not(:first-child) {
+      margin-top: 7px;
+      display: flex;
+      justify-content: center;
+    }
+    & div {
+      height: 20px;
+    }
+  }
+  &__icon {
+    height: 20px;
+    &__values {
+      margin-left: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      & > span:not(:first-child) {
+        margin-top: 7px;
+      }
+    }
+    &__value {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 26px;
+      height: 20px;
+    }
+  }
+}
