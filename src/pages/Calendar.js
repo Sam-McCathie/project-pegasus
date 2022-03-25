@@ -3,6 +3,7 @@ import CalendarNode from "../components/Calendar/CalendarNode";
 import {Layout} from "../components/Layout/Layout";
 import "../styles/calendar.scss";
 import {days} from "./days";
+import {NodeData} from "../components/Calendar/NodeData";
 
 // date
 // days
@@ -14,6 +15,8 @@ export const Calendar = () => {
   return (
     <Layout title={"Calendar"}>
       <div className="calendar">
+        {/*Temp testing */}
+        <NodeData />
         <div className="calendar__month">March 2022</div>
         {/* Conditionally render DOW -> hide if width doesn't allow all rows to show */}
         <div className="calendar__DOW">

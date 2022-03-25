@@ -4,11 +4,8 @@ import Event from "../../svgs/Event.svg";
 import Deadline from "../../svgs/Deadline.svg";
 import List from "../../svgs/List.svg";
 import Task from "../../svgs/Task.svg";
-import {NodeData} from "./NodeData";
 
 const CalendarNode = () => {
-  console.log(NodeData);
-
   return (
     <div className="calendar__node">
       <div className="calendar__node__day">31</div>
