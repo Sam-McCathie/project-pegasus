@@ -16,7 +16,8 @@ export const NodeData = () => {
   ];
 
   // todays date
-  const d = new Date();
+  // const d = new Date();
+  const d = new Date(2022, 11, 17);
   console.log(d);
 
   // todays month & year
@@ -63,14 +64,14 @@ export const NodeData = () => {
   console.log(iF);
 
   // get length of previous month
-  const previous = new Date(D.y, D.m - 1, 0).getDate();
+  const previous = new Date(D.y + 1, D.m - 1, 0).getDate();
   console.log(previous);
 
   // create an array of the extra days to round out the current month
   let previousMonthDays = [];
   if (iF > 0) {
-    for (let x = 0; x < iF; x++) {
-      previousMonthDays.push(createDate(previous - x, D.m - 1, D.y));
+    for (let x = -iF; x <= 0; x++) {
+      previousMonthDays.push(createDate(previous + x, D.m - 1, D.y));
     }
   }
   console.log(previousMonthDays);
