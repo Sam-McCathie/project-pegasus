@@ -17,7 +17,7 @@ export const NodeData = () => {
 
   // todays date
   // const d = new Date();
-  const d = new Date(2022, 11, 17);
+  const d = new Date(2022, 0, 17);
   console.log(d);
 
   // todays month & year
@@ -30,25 +30,26 @@ export const NodeData = () => {
 
   // format day data
   // - add to object identifyer if month is current? -> will help with CCS later
-  const createDate = (date, month, year) => {
-    const d = (date + 1).toString();
-    const dID = d.length > 1 ? date : `0${date}`;
+  const createDate = (date, month, year, type) => {
+    const dID = date >= 10 ? date : `0${date}`;
 
-    const m = month.toString();
-    const mID = m.length > 1 ? m : `0${m}`;
+    const m = month > 0 ? month : 12;
+    const mID = m.length >= 10 ? m : `0${m}`;
+
+    const y = type === "current" ? year : m !== 12 ? year : year - 1;
 
     const data = {
-      id: dID + mID + year,
+      id: dID + mID + y,
       date: date,
-      month: month,
-      year: year,
+      month: m,
+      year: y,
     };
     return data;
   };
 
   // array of days in current month
   const currentMonthDays = [...Array(daysInMonth).keys()].map((i) => {
-    return createDate(i + 1, D.m, D.y);
+    return createDate(i + 1, D.m, D.y, "current");
   });
 
   // get first day of current month
@@ -65,13 +66,15 @@ export const NodeData = () => {
 
   // get length of previous month
   const previous = new Date(D.y + 1, D.m - 1, 0).getDate();
+  console.log(new Date(D.y + 1, D.m - 1, 0));
   console.log(previous);
 
   // create an array of the extra days to round out the current month
   let previousMonthDays = [];
   if (iF > 0) {
-    for (let x = -iF; x <= 0; x++) {
-      previousMonthDays.push(createDate(previous + x, D.m - 1, D.y));
+    console.log("");
+    for (let x = previous - iF; x < previous; x++) {
+      previousMonthDays.push(createDate(x + 1, D.m - 1, D.y, "previous"));
     }
   }
   console.log(previousMonthDays);
@@ -92,7 +95,7 @@ export const NodeData = () => {
   let nextMonthDays = [];
   if (iL < days.length - 1) {
     for (let x = 1; x <= days.length - iL; x++) {
-      nextMonthDays.push(createDate(x, D.m + 1, D.y));
+      nextMonthDays.push(createDate(x, D.m + 1, D.y, "next"));
     }
   }
   console.log(nextMonthDays);
