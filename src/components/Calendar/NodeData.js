@@ -34,7 +34,7 @@ export const NodeData = (dd, mm, yyyy) => {
 
   // month
   const m = months[d.getMonth()];
-  // console.log(m);
+  console.log(m);
 
   // todays month & year
   const D = {m: d.getMonth() + 1, y: d.getFullYear()};
@@ -45,11 +45,11 @@ export const NodeData = (dd, mm, yyyy) => {
   // console.log(daysInMonth);
 
   // format day data
-  // - add to object identifyer if month is current? -> will help with CCS later
   const createDateNode = (date, month, year, type) => {
     const dID = date >= 10 ? date : `0${date}`;
 
     const m = month > 0 ? month : 12;
+    const M = months[m - 1];
     const mID = m.length >= 10 ? m : `0${m}`;
 
     const y = type === "current" ? year : m !== 12 ? year : year - 1;
@@ -57,7 +57,7 @@ export const NodeData = (dd, mm, yyyy) => {
     const data = {
       id: dID + mID + y,
       date: date,
-      month: m,
+      month: M,
       year: y,
     };
     return data;

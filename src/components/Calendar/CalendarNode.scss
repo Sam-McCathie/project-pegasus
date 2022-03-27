@@ -46,4 +46,7 @@
       height: 20px;
     }
   }
+  &__not-current {
+    background-color: var(--darkgrey);
+  }
 }
