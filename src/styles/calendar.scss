@@ -1,9 +1,17 @@
 .calendar {
   &__month {
-    text-align: center;
     font-size: 24px;
     font-weight: 900;
-    margin: 20px 0;
+    width: 200px;
+    text-align: center;
+    &__align {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      > div {
+        display: flex;
+      }
+    }
   }
   &__DOW {
     display: flex;

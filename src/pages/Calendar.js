@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import CalendarNode from "../components/Calendar/CalendarNode";
 import {Layout} from "../components/Layout/Layout";
 import "../styles/calendar.scss";
@@ -6,16 +6,40 @@ import {days} from "./days";
 import {NodeData} from "../components/Calendar/NodeData";
 
 export const Calendar = () => {
-  const data = NodeData(1, 12, 2022);
-  console.log(data.dates);
+  const today = new Date();
+  const [date, setDate] = useState({
+    d: today.getDate(),
+    m: today.getMonth(),
+    y: today.getFullYear(),
+  });
 
-  // add styles
-  // - if month !== to current month apply style
+  const [data, setData] = useState(NodeData(date.d, date.m, date.y));
+
+  const nextM = () => {
+    let d = date;
+    d.m = d.m + 1;
+    setDate(d);
+    setData(NodeData(date.d, date.m, date.y));
+  };
+
+  const previousM = () => {
+    let d = date;
+    d.m = d.m - 1;
+    setDate(d);
+    setData(NodeData(date.d, date.m, date.y));
+  };
 
   return (
     <Layout title={"Calendar"}>
       <div className="calendar">
-        <div className="calendar__month">{`${data.m} ${data.y}`}</div>
+        <div className="calendar__month__align">
+          <div>
+            <button onClick={previousM}>{"<"}</button>
+            <div className="calendar__month">{`${data.m} ${data.y}`}</div>
+            <button onClick={nextM}>{">"}</button>
+          </div>
+        </div>
+
         <div className="calendar__DOW">
           {days.map((d) => {
             return <div className="calendar__day">{d}</div>;

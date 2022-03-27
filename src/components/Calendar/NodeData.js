@@ -29,12 +29,12 @@ export const NodeData = (dd, mm, yyyy) => {
 
   // todays date
   // const d = new Date();
-  const d = new Date(yyyy, mm - 1, dd);
+  const d = new Date(yyyy, mm, dd);
   // console.log(d);
 
   // month
   const m = months[d.getMonth()];
-  console.log(m);
+  // console.log(m);
 
   // todays month & year
   const D = {m: d.getMonth() + 1, y: d.getFullYear()};
