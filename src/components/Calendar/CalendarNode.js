@@ -5,10 +5,10 @@ import Deadline from "../../svgs/Deadline.svg";
 import List from "../../svgs/List.svg";
 import Task from "../../svgs/Task.svg";
 
-const CalendarNode = () => {
+const CalendarNode = ({id, date}) => {
   return (
-    <div className="calendar__node">
-      <div className="calendar__node__day">31</div>
+    <div key={id} className="calendar__node">
+      <div className="calendar__node__day">{date}</div>
       <div className="calendar__node__icons">
         <div>
           <img className="calendar__node__icon" src={Event} alt="Event" />

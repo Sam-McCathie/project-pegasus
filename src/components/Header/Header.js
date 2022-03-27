@@ -4,6 +4,7 @@ import Home from "../../svgs/Home.svg";
 import Notifications from "../../svgs/Notifications.svg";
 import XP from "../../svgs/XP.svg";
 import Profile from "../../svgs/Profile.svg";
+import {Link} from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -11,9 +12,11 @@ export const Header = () => {
       <div className="header__content">
         <div className="header__logo">Logo</div>
         <div className="header__buttons">
-          <div className="header__button">
-            <img src={Home} alt=""></img>
-          </div>
+          <Link to="/">
+            <div className="header__button">
+              <img src={Home} alt=""></img>
+            </div>
+          </Link>
           <div className="header__button">
             <img src={Notifications} alt=""></img>
           </div>

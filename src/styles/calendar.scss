@@ -8,6 +8,7 @@
   &__DOW {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
     & > div:not(:first-child) {
       margin-left: 5px;
     }
@@ -23,8 +24,8 @@
     justify-content: center;
   }
   &__nodes {
-    & > div:not(:first-child) {
-      margin-left: 5px;
-    }
+    display: grid;
+    grid-template-columns: repeat(7, 130px);
+    grid-gap: 5px;
   }
 }

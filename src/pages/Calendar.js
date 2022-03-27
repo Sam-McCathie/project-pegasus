@@ -5,29 +5,23 @@ import "../styles/calendar.scss";
 import {days} from "./days";
 import {NodeData} from "../components/Calendar/NodeData";
 
-// date
-// days
-// calendar
-
 export const Calendar = () => {
-  console.log(days);
+  console.log(NodeData);
 
   return (
     <Layout title={"Calendar"}>
       <div className="calendar">
-        {/*Temp testing */}
-        <NodeData />
-        <div className="calendar__month">March 2022</div>
-        {/* Conditionally render DOW -> hide if width doesn't allow all rows to show */}
+        <div className="calendar__month">Date</div>
         <div className="calendar__DOW">
           {days.map((d) => {
             return <div className="calendar__day">{d}</div>;
           })}
         </div>
-        {/* use for alignment */}
         <div className="calendar__layout">
           <div className="calendar__nodes">
-            <CalendarNode />
+            {NodeData.map((d) => {
+              return <CalendarNode id={d.id} date={d.date} />;
+            })}
           </div>
         </div>
       </div>

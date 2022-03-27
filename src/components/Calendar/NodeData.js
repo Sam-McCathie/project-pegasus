@@ -1,112 +1,117 @@
-import React from "react";
-
 // Notes
 // - add a handler / test jan & dec current dates
+// testing array creation
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
-export const NodeData = () => {
-  // testing array creation
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+// todays date
+// const d = new Date();
+const d = new Date(2022, 4, 17);
+console.log(d);
 
-  // todays date
-  // const d = new Date();
-  const d = new Date(2022, 0, 17);
-  console.log(d);
+// todays month & year
+const D = {m: d.getMonth() + 1, y: d.getFullYear()};
+console.log(D);
 
-  // todays month & year
-  const D = {m: d.getMonth() + 1, y: d.getFullYear()};
-  console.log(D);
+// days in current month
+const daysInMonth = new Date(D.y, D.m, 0).getDate(); // m -> 0 indexed?
+console.log(daysInMonth);
 
-  // days in current month
-  const daysInMonth = new Date(D.y, D.m, 0).getDate(); // m -> 0 indexed?
-  console.log(daysInMonth);
+// format day data
+// - add to object identifyer if month is current? -> will help with CCS later
+const createDate = (date, month, year, type) => {
+  const dID = date >= 10 ? date : `0${date}`;
 
-  // format day data
-  // - add to object identifyer if month is current? -> will help with CCS later
-  const createDate = (date, month, year, type) => {
-    const dID = date >= 10 ? date : `0${date}`;
+  const m = month > 0 ? month : 12;
+  const mID = m.length >= 10 ? m : `0${m}`;
 
-    const m = month > 0 ? month : 12;
-    const mID = m.length >= 10 ? m : `0${m}`;
+  const y = type === "current" ? year : m !== 12 ? year : year - 1;
 
-    const y = type === "current" ? year : m !== 12 ? year : year - 1;
-
-    const data = {
-      id: dID + mID + y,
-      date: date,
-      month: m,
-      year: y,
-    };
-    return data;
+  const data = {
+    id: dID + mID + y,
+    date: date,
+    month: m,
+    year: y,
   };
-
-  // array of days in current month
-  const currentMonthDays = [...Array(daysInMonth).keys()].map((i) => {
-    return createDate(i + 1, D.m, D.y, "current");
-  });
-
-  // get first day of current month
-  const firstDay = new Date(D.y, D.m - 1, 1);
-  console.log(firstDay);
-
-  // get DOW of the first day of current month
-  const first = days[firstDay.getDay()];
-  console.log(first);
-
-  // get DOW index of first day in current month
-  const iF = days.indexOf(first) - 1;
-  console.log(iF);
-
-  // get length of previous month
-  const previous = new Date(D.y + 1, D.m - 1, 0).getDate();
-  console.log(new Date(D.y + 1, D.m - 1, 0));
-  console.log(previous);
-
-  // create an array of the extra days to round out the current month
-  let previousMonthDays = [];
-  if (iF > 0) {
-    console.log("");
-    for (let x = previous - iF; x < previous; x++) {
-      previousMonthDays.push(createDate(x + 1, D.m - 1, D.y, "previous"));
-    }
-  }
-  console.log(previousMonthDays);
-
-  // get last day of current month
-  const lastDay = new Date(D.y, D.m, 0);
-  console.log(lastDay);
-
-  // get DOW of the last day of current month
-  const last = days[lastDay.getDay()];
-  console.log(last);
-
-  // get DOW index of last day of current month
-  const iL = days.indexOf(last);
-  console.log(iL);
-
-  // create an array of the extra days to round out the current month
-  let nextMonthDays = [];
-  if (iL < days.length - 1) {
-    for (let x = 1; x <= days.length - iL; x++) {
-      nextMonthDays.push(createDate(x, D.m + 1, D.y, "next"));
-    }
-  }
-  console.log(nextMonthDays);
-
-  // current full array including extra days before current month
-  let currentMonth = [
-    ...previousMonthDays,
-    ...currentMonthDays,
-    ...nextMonthDays,
-  ];
-  console.log(currentMonth);
-
-  return <div>NodeData</div>;
+  return data;
 };
+
+// array of days in current month
+const currentMonthDays = [...Array(daysInMonth).keys()].map((i) => {
+  return createDate(i + 1, D.m, D.y, "current");
+});
+
+// get first day of current month
+const firstDay = new Date(D.y, D.m - 1, 1);
+console.log(firstDay);
+
+// get DOW of the first day of current month
+const first = days[firstDay.getDay()];
+console.log(first);
+
+// get DOW index of first day in current month
+const iF = days.indexOf(first) - 1;
+console.log(iF);
+
+// get length of previous month
+const previous = new Date(D.y + 1, D.m - 1, 0).getDate();
+console.log(new Date(D.y + 1, D.m - 1, 0));
+console.log(previous);
+
+// create an array of the extra days to round out the current month
+let previousMonthDays = [];
+if (iF > 0) {
+  console.log("");
+  for (let x = previous - iF; x < previous; x++) {
+    previousMonthDays.push(createDate(x + 1, D.m - 1, D.y, "previous"));
+  }
+}
+console.log(previousMonthDays);
+
+// get last day of current month
+const lastDay = new Date(D.y, D.m, 0);
+console.log(lastDay);
+
+// get DOW of the last day of current month
+const last = days[lastDay.getDay()];
+console.log(last);
+
+// get DOW index of last day of current month
+const iL = days.indexOf(last);
+console.log(iL);
+
+// console.log(iL <= days.length - 1);
+
+// create an array of the extra days to round out the current month
+let nextMonthDays = [];
+if (iL <= days.length - 1) {
+  console.log("ran nect m");
+  for (let x = 1; x <= days.length - iL; x++) {
+    nextMonthDays.push(
+      createDate(
+        x,
+        D.m !== 12 ? D.m + 1 : 1,
+        D.m !== 12 ? D.y : D.y + 1,
+        "next"
+      )
+    );
+  }
+}
+console.log(nextMonthDays);
+
+// current full array including extra days before current month
+let currentMonth = [
+  ...previousMonthDays,
+  ...currentMonthDays,
+  ...nextMonthDays,
+];
+console.log(currentMonth);
+
+export const NodeData = currentMonth;
