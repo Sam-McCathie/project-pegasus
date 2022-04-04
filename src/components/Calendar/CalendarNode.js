@@ -5,11 +5,13 @@ import Deadline from "../../svgs/Deadline.svg";
 import List from "../../svgs/List.svg";
 import Task from "../../svgs/Task.svg";
 
-const CalendarNode = ({id, date, bg}) => {
+const CalendarNode = ({date, bg, today}) => {
+  console.log(today);
   return (
     <div
-      key={id}
-      className={`calendar__node ${bg ? "" : "calendar__node__not-current"}`}
+      className={`calendar__node${today ? "-today" : ""} ${
+        bg ? "" : "calendar__node__not-current"
+      }`}
     >
       <div className="calendar__node__day">{date}</div>
       <div className="calendar__node__icons">

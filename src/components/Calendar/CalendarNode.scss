@@ -1,8 +1,16 @@
 .calendar__node {
+  border: 1px solid var(--darkgrey);
+}
+
+.calendar__node-today {
+  border: 2px solid var(--black);
+}
+
+.calendar__node,
+.calendar__node-today {
   width: 130px;
   height: 130px;
   display: flex;
-  border: 1px solid #000000;
   border-radius: 10px;
   &__day {
     font-size: 36px;

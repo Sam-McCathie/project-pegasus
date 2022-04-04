@@ -7,13 +7,32 @@ import {NodeData} from "../components/Calendar/NodeData";
 
 export const Calendar = () => {
   const today = new Date();
+
+  const d = today.getDate();
+  const m = today.getMonth();
+  const y = today.getFullYear();
+
+  const createID = (d, m, y) => {
+    const dd = d < 10 ? `0${d}` : d;
+
+    const indexM = m + 1;
+    const mm = indexM < 10 ? `0${indexM}` : indexM;
+
+    const id = `${dd + mm + y}`;
+    return id;
+  };
+
   const [date, setDate] = useState({
-    d: today.getDate(),
-    m: today.getMonth(),
-    y: today.getFullYear(),
+    d: d,
+    m: m,
+    y: y,
+    id: createID(d, m, y),
   });
 
   const [data, setData] = useState(NodeData(date.d, date.m, date.y));
+
+  console.log(date);
+  console.log(data);
 
   const nextM = () => {
     let d = date;
@@ -42,17 +61,22 @@ export const Calendar = () => {
 
         <div className="calendar__DOW">
           {days.map((d) => {
-            return <div className="calendar__day">{d}</div>;
+            return (
+              <div key={d} className="calendar__day">
+                {d}
+              </div>
+            );
           })}
         </div>
         <div className="calendar__layout">
           <div className="calendar__nodes">
-            {data.dates.map((d) => {
+            {data.dates.map((d, i) => {
               return (
                 <CalendarNode
-                  id={d.id}
+                  key={i}
                   date={d.date}
                   bg={d.month === data.m ? true : false}
+                  today={d.id === date.id ? true : false}
                 />
               );
             })}
