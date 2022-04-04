@@ -4,20 +4,18 @@ import {Layout} from "../components/Layout/Layout";
 import "../styles/calendar.scss";
 import {days} from "./days";
 import {NodeData} from "../components/Calendar/NodeData";
+import NodeModal from "../components/Calendar/NodeModal";
 
 export const Calendar = () => {
   const today = new Date();
-
   const d = today.getDate();
   const m = today.getMonth();
   const y = today.getFullYear();
 
   const createID = (d, m, y) => {
     const dd = d < 10 ? `0${d}` : d;
-
     const indexM = m + 1;
     const mm = indexM < 10 ? `0${indexM}` : indexM;
-
     const id = `${dd + mm + y}`;
     return id;
   };
@@ -30,9 +28,6 @@ export const Calendar = () => {
   });
 
   const [data, setData] = useState(NodeData(date.d, date.m, date.y));
-
-  console.log(date);
-  console.log(data);
 
   const nextM = () => {
     let d = date;
@@ -48,6 +43,11 @@ export const Calendar = () => {
     setData(NodeData(date.d, date.m, date.y));
   };
 
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <Layout title={"Calendar"}>
       <div className="calendar">
@@ -58,7 +58,8 @@ export const Calendar = () => {
             <button onClick={nextM}>{">"}</button>
           </div>
         </div>
-
+        <button onClick={() => toggleModal()}>show</button>
+        {modal ? <NodeModal toggleModal={toggleModal} /> : null}
         <div className="calendar__DOW">
           {days.map((d) => {
             return (
